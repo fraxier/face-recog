@@ -19,7 +19,7 @@ export default function FaceRecognition({imgURL, boxes, showLoading}) {
 
   return (
     <div className="relative max-w-screen-sm mx-auto">
-      {showLoading ? <CircularProgress label="Loading" /> : ""}
+      {showLoading ? <CircularProgress label="Loading" className="mx-auto" /> : ""}
       {boxes.map((box) => {
         return borderBox(box)
       })}

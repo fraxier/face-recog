@@ -116,7 +116,7 @@ export default function Home() {
         <Navigation />
       </div>
       <Rank />
-      <ImageLinkForm setInput={setInput} onButtonSubmit={onButtonSubmit} />
+      <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onButtonSubmit} />
       <FaceRecognition imgURL={imgURL} boxes={boxRegions} showLoading={isLoading} />
     </main>
   );
