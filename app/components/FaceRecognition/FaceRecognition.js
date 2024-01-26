@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { CircularProgress } from "@nextui-org/react"
 
 
-export default function FaceRecognition({imgURL, boxes}) {
+export default function FaceRecognition({imgURL, boxes, showLoading}) {
 
   const borderBox = (boxProps) => (
     <div key={boxProps.conceptVal} 
          style={{
             position:"absolute", 
-            border:"8px solid red", 
+            border:"3px solid red", 
             zIndex: 10,
             top: boxProps.boundary.topRow, 
             right: boxProps.boundary.rightCol, 
@@ -18,9 +18,9 @@ export default function FaceRecognition({imgURL, boxes}) {
   )
 
   return (
-    <div className="flex justify-center relative">
+    <div className="relative max-w-screen-sm mx-auto">
+      {showLoading ? <CircularProgress label="Loading" /> : ""}
       {boxes.map((box) => {
-        console.log(box)
         return borderBox(box)
       })}
       <img id="image" src={imgURL} />

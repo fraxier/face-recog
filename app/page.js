@@ -12,6 +12,20 @@ export default function Home() {
   const [input, setInput] = useState('')
   const [boxRegions, setBoxes] = useState([])
   const [imgURL, setImgURL] = useState()
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    var docWidth = document.documentElement.offsetWidth;
+
+    [].forEach.call(
+      document.querySelectorAll('*'),
+      function(el) {
+        if (el.offsetWidth > docWidth) {
+          console.log(el);
+        }
+      }
+    );
+  })
   
   const calculateFaceBox = ({ topRow, leftCol, bottomRow, rightCol }) => {
     const image = document.getElementById('image')
@@ -27,7 +41,7 @@ export default function Home() {
 
   const onButtonSubmit = () => {
     console.log('Click!')
-    
+    setLoading(true)
     const PAT = '4f74d126bc3d47778d17f7708b8747b9';
     const USER_ID = 'clarifai';
     const APP_ID = 'main';
@@ -90,6 +104,7 @@ export default function Home() {
             });
         });
         setBoxes(boxes)
+        setLoading(false)
     })
     .catch(error => console.log('error', error));
   }
@@ -102,7 +117,7 @@ export default function Home() {
       </div>
       <Rank />
       <ImageLinkForm setInput={setInput} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition imgURL={imgURL} boxes={boxRegions} />
+      <FaceRecognition imgURL={imgURL} boxes={boxRegions} showLoading={isLoading} />
     </main>
   );
 }
