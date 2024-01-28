@@ -1,11 +1,14 @@
 'use client'
 
+import { useEffect, useState } from "react";
+import ParticlesBg from "particles-bg";
+import { Card, CardBody } from "@nextui-org/react";
 import Navigation from "./components/Navigation/Navigation";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Logo from "./components/Logo/logo";
 import Rank from "./components/Rank/rank";
-import { useEffect, useState } from "react";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
+
 
 export default function Home() {
 
@@ -111,16 +114,32 @@ export default function Home() {
 
   return (
     <main className="w-screen flex flex-col p-24 gap-10">
+      <ParticlesBg type="lines" bg={true}/>
       <div className="w-full flex flex-row justify-between">
-        <Logo />
-        <Navigation />
+          <Logo />
+          <Navigation />
       </div>
       <Rank />
-      <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition imgURL={imgURL} boxes={boxRegions} showLoading={isLoading} />
+      <Card className="pb-8 px-4 border-none bg-background/60 dark:bg-default-100/50">
+        <CardBody>
+          <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onButtonSubmit} />
+          <FaceRecognition imgURL={imgURL} boxes={boxRegions} showLoading={isLoading} />
+        </CardBody>
+      </Card>
     </main>
   );
 }
 
-
+// "color"
+// "ball"
+// "lines"
+// "thick"
+// "circle"
+// "cobweb"
+// "polygon"
+// "square"
+// "tadpole"
+// "fountain"
+// "random"
+// "custom"
 
