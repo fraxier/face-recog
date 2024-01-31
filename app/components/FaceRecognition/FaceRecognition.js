@@ -3,26 +3,10 @@ import { CircularProgress } from "@nextui-org/react"
 
 export default function FaceRecognition({imgURL, boxes, showLoading}) {
 
-  const borderBox = (boxProps) => (
-    <div key={boxProps.conceptVal} 
-         style={{
-            position:"absolute", 
-            border:"3px solid red", 
-            zIndex: 10,
-            top: boxProps.boundary.topRow, 
-            right: boxProps.boundary.rightCol, 
-            bottom: boxProps.boundary.bottomRow, 
-            left: boxProps.boundary.leftCol
-         }}>
-    </div>
-  )
-
   return (
     <div className="relative max-w-screen-sm mx-auto">
-      {showLoading ? <CircularProgress label="Loading" className="mx-auto" /> : ""}
-      {boxes.map((box) => {
-        return borderBox(box)
-      })}
+      {showLoading ? <CircularProgress label="Feeling age vibe..." className="mx-auto" /> : ""}
+      
       <img id="image" src={imgURL} />
     </div>
   )
