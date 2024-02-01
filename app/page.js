@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ParticlesBg from "particles-bg";
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody, CircularProgress } from "@nextui-org/react";
+
 import Navigation from "./components/Navigation/Navigation";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Logo from "./components/Logo/logo";
 import Rank from "./components/Rank/rank";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
-
 
 export default function Home() {
 
@@ -21,7 +21,7 @@ export default function Home() {
     return Number(b.value) - Number(a.value)
   }
 
-  const onButtonSubmit = () => {
+  const onFormSubmit = () => {
     console.log('Click!')
     setLoading(true)
     setImgURL(input)
@@ -29,7 +29,7 @@ export default function Home() {
     const USER_ID = 'clarifai';       
     const APP_ID = 'demographics-age-new';
     const MODEL_ID = 'age-demographics';
-    const MODEL_VERSION_ID = '102391edafbe2c07bdbc128995b88e67';    
+    const MODEL_VERSION_ID = '102391edafbe2c07bdbc128995b88e67';
     const IMAGE_URL = input;
 
     const raw = JSON.stringify({
@@ -70,6 +70,11 @@ export default function Home() {
         .catch(error => console.log('error', error));
   }
 
+  const clearForm = () => {
+    setConcepts([])
+    setImgURL('')
+  }
+
   return (
     <main className="w-screen flex flex-col p-24 gap-10">
       <ParticlesBg type="circles" bg={true} num={0.5} color="#FFFFFF"/>
@@ -81,12 +86,14 @@ export default function Home() {
       <p className="text-center text-2xl">Use AI to determine someone's age!</p>
       <Card className="py-8 px-4 border-none bg-background/60 dark:bg-default-100/50">
         <CardBody>
-          <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onButtonSubmit} />
-          <FaceRecognition imgURL={imgURL} showLoading={isLoading} />
+          <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onFormSubmit} clearForm={clearForm} />
+          {imgURL ? <FaceRecognition imgURL={imgURL}/> : ""}
+          {isLoading ? <CircularProgress size="lg" label="Feeling age vibe..." className="mx-auto my-4" /> : ""}
           { concepts.length > 0 ? 
             <Rank concept={concepts[0]} /> : ""
           }
         </CardBody>
+        <div id="pg-bottom"></div>
       </Card>
     </main>
   );
