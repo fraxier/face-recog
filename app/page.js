@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import ParticlesBg from "particles-bg";
-import { Card, CardBody, CircularProgress } from "@nextui-org/react";
+import { Card, CardBody, Spinner } from "@nextui-org/react";
 
 import Navigation from "./components/Navigation/Navigation";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Logo from "./components/Logo/logo";
 import Rank from "./components/Rank/rank";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
+import InfoModal from "./components/InfoModal/InfoModal";
 
 export default function Home() {
 
@@ -84,11 +85,12 @@ export default function Home() {
       </div>
       <p className="text-center text-5xl">Smart Brain</p>
       <p className="text-center text-2xl">Use AI to determine someone's age!</p>
+      <InfoModal />
       <Card className="py-8 px-4 border-none bg-background/60 dark:bg-default-100/50">
         <CardBody>
           <ImageLinkForm input={input} setInput={setInput} onButtonSubmit={onFormSubmit} clearForm={clearForm} />
           {imgURL ? <FaceRecognition imgURL={imgURL}/> : ""}
-          {isLoading ? <CircularProgress size="lg" label="Feeling age vibe..." className="mx-auto my-4" /> : ""}
+          {isLoading ? <Spinner size="lg" color="primary" label="Feeling age vibe..." className="mx-auto my-4" /> : ""}
           { concepts.length > 0 ? 
             <Rank concept={concepts[0]} /> : ""
           }
