@@ -38,10 +38,10 @@ export default function Rank({ concept }) {
 
   return (
     <div>
-      <p className="text-center text-2xl my-4">This age is...</p>
+      <p className="text-center text-2xl my-4">This person's age is...</p>
       <p className={noto.className + " text-center text-5xl"}>{value}</p>
       {display ? (
-        <p>Smart Brain is pretty sure to about ${(concept.value * 100).toFixed(2)}% certainty!</p>
+        <p className="text-center">Smart Brain is pretty sure to about {(concept.value * 100).toFixed(2)}% certainty!</p>
       ) : ""}
       
     </div>

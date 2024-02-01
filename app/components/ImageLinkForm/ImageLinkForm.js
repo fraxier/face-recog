@@ -1,7 +1,6 @@
 import {Input, Button} from "@nextui-org/react"
-import { useState } from "react"
 
-export default function ImageLinkForm ({ input, setInput, onButtonSubmit }) {
+export default function ImageLinkForm ({ input, setInput, onButtonSubmit, clearForm }) {
 
   const handleChange = (event) => {
     setInput(event.target.value)
@@ -9,6 +8,7 @@ export default function ImageLinkForm ({ input, setInput, onButtonSubmit }) {
 
   const handleClear = () => {
     setInput('')
+    clearForm()
   }
   
   return (
