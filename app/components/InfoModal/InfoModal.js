@@ -5,7 +5,7 @@ export default function InfoModal() {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const ListItem = ({children}) => { return <li className="mb-4 ">{children}</li>}
+    const ListItem = ({children}) => { return <li className="mb-2">{children}</li>}
 
     return (
         <>
